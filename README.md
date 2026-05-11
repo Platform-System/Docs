@@ -37,10 +37,12 @@ Bản đồ tri thức hệ thống Microservices Polyrepo.
 - [<img src="./assets/labels/email_service.svg" alt="Platform.Email">](https://github.com/Platform-System/Platform.Email): Dịch vụ hỗ trợ gửi thông báo Email.
 - [<img src="./assets/labels/messaging.svg" alt="Platform.Messaging">](https://github.com/Platform-System/Platform.Messaging): Cơ chế giao tiếp Event-Driven (RabbitMQ).
 
-### 8. Ops (Vận hành)
+### 8. DevOps Automation (CI-CD & IaC)
 - [<img src="./assets/labels/ci_cd.svg" alt="Platform.CI-CD">](https://github.com/Platform-System/Platform.CI-CD): Quy trình tự động hóa GitHub Actions.
-- [<img src="./assets/labels/docs.svg" alt="Platform.Docs">](https://github.com/Platform-System/Platform.Docs): Tài liệu hệ thống Master.
 - [<img src="./assets/labels/iac.svg" alt="Platform.IaC">](https://github.com/Platform-System/Platform.IaC): Cấu hình hạ tầng Docker.
+
+### 9. System Documentation (Docs & Profile)
+- [<img src="./assets/labels/docs.svg" alt="Platform.Docs">](https://github.com/Platform-System/Platform.Docs): Tài liệu hệ thống Master.
 - [<img src="./assets/labels/profile_label.svg" alt="Platform.Profile">](https://github.com/Platform-System/.github): Hồ sơ hệ thống và Dashboards.
 
 
