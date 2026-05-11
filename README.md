@@ -6,8 +6,8 @@ Bản đồ tri thức hệ thống Microservices Polyrepo.
 
 ## 🗺️ Master Map
 
-### 1. UI (Giao diện người dùng)
-- [<img src="./assets/labels/store_ui.svg" alt="Platform.StoreUI">](https://github.com/Platform-System/Platform.StoreUI): Giao diện cổng thông tin Nexus hiện đại.
+### 1. Store UI (Giao diện người dùng)
+- [<img src="./assets/labels/store-ui.svg" alt="Platform.StoreUI">](https://github.com/Platform-System/Platform.StoreUI): Giao diện cổng thông tin Nexus hiện đại.
 
 ### 2. Entry Point (Gateway)
 - [<img src="./assets/labels/gateway.svg" alt="Platform.Gateway">](https://github.com/Platform-System/Platform.Gateway): Cổng tiếp nhận & Điều hướng yêu cầu (Gateway).
