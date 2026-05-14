@@ -31,7 +31,7 @@ Pham vi ap dung:
 Hien tai boundary mong muon:
 
 - `Catalog` giu product, category, stock
-- `Store` giu store profile, membership, verification, store policy
+- `Store` giu store profile, membership, activation status, store policy
 - `Ordering` giu cart, order, payment snapshot phuc vu checkout va history
 - `Identity` giu user profile noi bo va identity-related integration surface
 
@@ -163,14 +163,15 @@ Trang thai:
 - co `Responses`, `Mappers`, `Services`
 - co tach public va manage route kha ro
 - manage surface da doi ten theo resource-oriented naming ro hon
+- flow store da chot theo `activation` thay vi `verification`
 
 Con lech:
 
-- mot so action method ben trong manage controller van nghien ve business action naming hon la resource sub-action naming
+- naming command/handler noi bo van con dau vet lich su o mot vai cho, nhung public contract da theo huong moi
 
 Nen chinh tiep:
 
-1. can nhac co nen doi ten action method/manage sub-route de sat resource semantics hon nua hay khong
+1. neu can cleanup sau, uu tien doi ten noi bo cho sat hon voi `activation`
 
 ### `Platform.Identity.API`
 
@@ -198,16 +199,16 @@ Trang thai:
 - co mapper ro cho nhieu feature
 - response DTO da vao `Responses`
 - route explicit da ro hon cho `products`, `categories`, `product-medias`
+- da tach ro public product listing theo store slug va manage surface pending owner review
 
 Con lech:
 
 - mot so policy/approval flow naming con dai va khong deu tay
-- mot so surface lien quan den store/product ownership van tach o `StoreProductsController`
 
 Nen chinh tiep:
 
 1. giu `Shared` chi cho utility khong phai response neu thuc su can
-2. can nhac co nen gom lai surface `StoreProductsController` vao bounded route scheme ro hon nua hay khong
+2. neu can cleanup sau, can nhac co nen doi ten `StoreProductsController` de phan biet ro public surface va manage surface hon nua hay khong
 
 ### `Platform.Ordering.API`
 
