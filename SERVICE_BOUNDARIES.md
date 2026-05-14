@@ -162,14 +162,15 @@ Trang thai:
 - dang gan convention nhat
 - co `Responses`, `Mappers`, `Services`
 - co tach public va manage route kha ro
+- manage surface da doi ten theo resource-oriented naming ro hon
 
 Con lech:
 
-- naming controller van tron giua resource controller va action-oriented controller
+- mot so action method ben trong manage controller van nghien ve business action naming hon la resource sub-action naming
 
 Nen chinh tiep:
 
-1. review xem `StoreManagementController` va `StoreVerificationController` co can doi ten theo bounded surface convention hay giu nguyen
+1. can nhac co nen doi ten action method/manage sub-route de sat resource semantics hon nua hay khong
 
 ### `Platform.Identity.API`
 
@@ -235,7 +236,7 @@ Nen lam theo thu tu:
 1. xoa folder `Shared` rong va namespace cu sau khi IDE nha handle
 2. chot route explicit/public cho `Catalog`
 3. review naming command/request noi bo cua `Ordering` neu muon sat route moi hon
-4. review naming controller manage surface cua `Store`
+4. review action naming chi tiet trong manage surface cua `Store`
 
 ## 16. Quick review checklist
 
