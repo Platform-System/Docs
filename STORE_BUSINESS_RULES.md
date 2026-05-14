@@ -4,7 +4,9 @@
 - Một user hiện chỉ thuộc về một store tại một thời điểm.
 - Mỗi store có `Slug` duy nhất và một bộ policy duy nhất gồm shipping, return, warranty.
 - Khi tạo store, store bắt đầu ở `Draft` và người tạo trở thành `Owner`.
-- Owner có thể gửi yêu cầu kích hoạt store; admin approve sẽ chuyển store sang `Active`.
+- Policy là resource riêng của store; khi tạo store chưa bắt buộc phải có policy ngay.
+- Owner chỉ được gửi yêu cầu kích hoạt store khi policy đã đủ `shipping`, `return`, `warranty`; admin approve sẽ chuyển store sang `Active`.
+- Khi store đã `Active`, policy bị khóa và không được sửa trực tiếp bằng flow hiện tại.
 - Chỉ owner của store `Active` mới được mời thêm member, và chỉ mời được `Manager` hoặc `Staff`.
 - Owner luôn có quyền publish trực tiếp; owner có thể cấp hoặc thu hồi quyền publish trực tiếp cho member active.
 - User chỉ tạo được sản phẩm khi thuộc một store `Active`.
