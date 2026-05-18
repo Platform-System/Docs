@@ -6,8 +6,10 @@ Bản đồ tri thức hệ thống Microservices Polyrepo.
 
 ## 🗺️ Master Map
 
-### 1. Store UI (Giao diện người dùng)
-- [<img src="./assets/labels/store-ui.svg" alt="Platform.StoreUI">](https://github.com/Platform-System/Platform.StoreUI): Giao diện cổng thông tin Nexus hiện đại.
+### 1. User Interfaces (Hệ thống giao diện)
+- [<img src="./assets/labels/portal_ui.svg" alt="Platform.PortalUI">](https://github.com/Platform-System/Platform.PortalUI): Cổng mua sắm trực tuyến Nexus dành cho khách hàng.
+- [<img src="./assets/labels/merchant_ui.svg" alt="Platform.MerchantUI">](https://github.com/Platform-System/Platform.MerchantUI): Cổng thông tin và quản lý dành cho Đối tác/Người bán (Merchant).
+- [<img src="./assets/labels/admin_ui.svg" alt="Platform.AdminUI">](https://github.com/Platform-System/Platform.AdminUI): Hệ thống quản trị tập trung dành cho Ban điều hành (Admin).
 
 ### 2. Entry Point (Gateway)
 - [<img src="./assets/labels/gateway.svg" alt="Platform.Gateway">](https://github.com/Platform-System/Platform.Gateway): Cổng tiếp nhận & Điều hướng yêu cầu (Gateway).
@@ -17,9 +19,11 @@ Bản đồ tri thức hệ thống Microservices Polyrepo.
 - [<img src="./assets/labels/identity_service.svg" alt="Platform.Identity.API">](https://github.com/Platform-System/Platform.Identity.API): Quản lý Tài khoản & Xác thực người dùng.
 - [<img src="./assets/labels/ordering_service.svg" alt="Platform.Ordering.API">](https://github.com/Platform-System/Platform.Ordering.API): Quản lý Đặt hàng & Đơn hàng.
 - [<img src="./assets/labels/store_service.svg" alt="Platform.Store.API">](https://github.com/Platform-System/Platform.Store.API): Quản lý Cửa hàng & Sản phẩm bán lẻ.
+- [<img src="./assets/labels/payment_service.svg" alt="Platform.Payment.API">](https://github.com/Platform-System/Platform.Payment.API): Quản lý Thanh toán & Giao dịch.
 
 ### 4. Functions (Serverless Modules)
 - [<img src="./assets/labels/product_cover_upload.svg" alt="Platform.ProductCoverUpload.Function">](https://github.com/Platform-System/Platform.ProductCoverUpload.Function): Serverless function xử lý tải lên ảnh bìa sản phẩm.
+- [<img src="./assets/labels/store_image_upload.svg" alt="Platform.StoreImageUpload.Function">](https://github.com/Platform-System/Platform.StoreImageUpload.Function): Serverless function xử lý tải lên ảnh cửa hàng.
 
 ### 5. Core (Xương sống kiến trúc)
 - [<img src="./assets/labels/api.svg" alt="Platform.Api">](https://github.com/Platform-System/Platform.Api): Thư viện cơ sở cho các Web APIs.
