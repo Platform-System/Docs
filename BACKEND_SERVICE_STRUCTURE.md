@@ -80,6 +80,7 @@ Platform.<Service>.API
 - `Presentation` là cửa vào đồng bộ
   - nhận HTTP request hoặc gRPC call
   - không nên chứa business logic dày
+  - `gRPC` vẫn nằm trong `Presentation/Grpc`, không kéo ra root
 
 - `Consumers` là cửa vào bất đồng bộ
   - nhận message từ RabbitMQ, MassTransit, event bus
@@ -197,10 +198,12 @@ Platform.<Service>.API
 
 - Ưu tiên `Consumers/` ở root service
 - Không ưu tiên `Infrastructure/Consumers`
+- Không kéo `Grpc/` ra root service
 - Lý do:
   - `Consumers` là entrypoint của service
   - vai trò của nó gần với `Presentation` hơn là một implementation detail
   - nhìn cây thư mục sẽ dễ hình dung service có mấy cửa vào
+  - `gRPC` vẫn là synchronous interface nên thuộc `Presentation`
 
 ## Notes
 

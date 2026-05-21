@@ -425,3 +425,5 @@ Platform.<Service>.API
 - ưu tiên `Consumers/` ở root service
 - không ưu tiên `Infrastructure/Consumers`
 - xem `Consumers` là một entrypoint của service, ngang hàng với `Presentation`
+- không kéo `Grpc/` ra root service
+- `gRPC` vẫn thuộc `Presentation/Grpc` vì nó là synchronous interface
