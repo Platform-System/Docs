@@ -8,6 +8,18 @@ Mục tiêu:
 - tạo feature mới mà không bị đặt sai tầng
 - giữ style đồng nhất giữa các service
 
+## Sơ đồ nhớ nhanh
+
+```text
+Platform.<Service>.API
+├─ Application      -> Use case
+├─ Domain           -> Business core
+├─ Infrastructure   -> DB + external systems
+├─ Presentation     -> HTTP/gRPC entrypoint
+├─ Consumers        -> Async message entrypoint
+└─ Program.cs       -> Bootstrap
+```
+
 ## Cây thư mục chuẩn
 
 ```text
@@ -63,7 +75,29 @@ Platform.<Service>.API
    └─ Consumers
 ```
 
-## Ý nghĩa từng tầng
+## Đọc cây này như thế nào
+
+- `Presentation` là cửa vào đồng bộ
+  - nhận HTTP request hoặc gRPC call
+  - không nên chứa business logic dày
+
+- `Consumers` là cửa vào bất đồng bộ
+  - nhận message từ RabbitMQ, MassTransit, event bus
+  - được xem như một entrypoint riêng của service
+
+- `Application` là luồng xử lý use case
+  - command, query, handler, validator, response, mapper
+
+- `Domain` là lõi nghiệp vụ
+  - entity, enum, error, value object, domain event
+
+- `Infrastructure` là tầng chạm bên ngoài
+  - database, config, integration client, provider, outbox
+
+- `Program.cs` chỉ để bootstrap
+  - đăng ký DI, middleware, migration, map endpoint
+
+## Ý nghĩa từng tầng chi tiết
 
 - `Application`
   - chứa use case
@@ -98,7 +132,7 @@ Platform.<Service>.API
     - `ApplyMigrationsAsync<TDbContext>()`
     - `MapControllers()`, `MapGrpcService(...)`
 
-## Đặt file vào đâu
+## Muốn thêm file gì thì đặt ở đâu
 
 - thêm API mới
   - `Presentation/Http`
@@ -130,6 +164,27 @@ Platform.<Service>.API
 - thêm consumer RabbitMQ / MassTransit
   - `Consumers`
 
+## Mapping nhanh theo loại file
+
+```text
+*Controller.cs                  -> Presentation/Http
+*IntegrationService.cs          -> Presentation/Grpc
+*Command.cs                     -> Application/Features/<Feature>/Commands
+*Handler.cs                     -> Application/Features/<Feature>/Commands hoặc Queries
+*Validator.cs                   -> Application/Features/<Feature>/Commands
+*Query.cs                       -> Application/Features/<Feature>/Queries
+*Response.cs                    -> Application/Features/<Feature>/Responses
+*Mapper.cs                      -> Application/Features/<Feature>/Mappers hoặc Presentation/Grpc
+<Service>DbContext.cs           -> Infrastructure/Data
+<Service>DbContextFactory.cs    -> Infrastructure/Data
+<Entity>Model.cs                -> Infrastructure/Persistence/Models
+<Entity>Configuration.cs        -> Infrastructure/Persistence/Configurations
+<Options>.cs                    -> Infrastructure/Configurations
+<ServiceClient>.cs              -> Infrastructure/Integrations
+<Provider>.cs                   -> Infrastructure/Providers
+<EventConsumer>.cs              -> Consumers
+```
+
 ## Rule nhớ nhanh
 
 - `Presentation` = cửa vào
@@ -137,6 +192,15 @@ Platform.<Service>.API
 - `Domain` = luật nghiệp vụ cốt lõi
 - `Infrastructure` = chạm DB và bên ngoài
 - `Consumers` = cửa vào async
+
+## Chốt convention cho `Consumers`
+
+- Ưu tiên `Consumers/` ở root service
+- Không ưu tiên `Infrastructure/Consumers`
+- Lý do:
+  - `Consumers` là entrypoint của service
+  - vai trò của nó gần với `Presentation` hơn là một implementation detail
+  - nhìn cây thư mục sẽ dễ hình dung service có mấy cửa vào
 
 ## Notes
 
