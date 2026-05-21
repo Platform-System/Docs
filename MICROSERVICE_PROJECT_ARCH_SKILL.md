@@ -323,3 +323,105 @@ Lý do:
 - script build service ở chế độ single-thread
 - script giảm risk fail ảo do MSBuild song song trong workspace hiện tại
 ```
+
+---
+
+## Phụ lục: Quick Structure Map
+
+Phần này chỉ là chú thích bổ sung để đọc nhanh hơn.
+
+Không thay thế nội dung skill ở trên.
+
+### Sơ đồ nhớ nhanh
+
+```text
+Platform.<Service>.API
+├─ Application      -> Use case
+├─ Domain           -> Business core
+├─ Infrastructure   -> DB + external systems
+├─ Presentation     -> HTTP/gRPC entrypoint
+├─ Consumers        -> Async message entrypoint
+└─ Program.cs       -> Bootstrap
+```
+
+### Cây thư mục chuẩn
+
+```text
+Platform.<Service>.API
+├─ Application
+│  ├─ Abstractions
+│  │  ├─ Integrations
+│  │  ├─ Messaging
+│  │  └─ <OtherContracts>
+│  └─ Features
+│     └─ <FeatureName>
+│        ├─ Commands
+│        ├─ Queries
+│        ├─ Responses
+│        ├─ Mappers
+│        └─ Services
+├─ Domain
+│  ├─ Entities
+│  ├─ Enums
+│  ├─ Errors
+│  ├─ Events
+│  └─ ValueObjects
+├─ Infrastructure
+│  ├─ Configurations
+│  ├─ Constants
+│  ├─ Data
+│  │  ├─ <Service>DbContext.cs
+│  │  ├─ <Service>DbContextFactory.cs
+│  │  └─ Migrations
+│  ├─ DependencyInjection
+│  │  └─ DependencyInjection.cs
+│  ├─ Integrations
+│  ├─ Persistence
+│  │  ├─ Configurations
+│  │  └─ Models
+│  ├─ Providers
+│  ├─ Outbox
+│  └─ Services
+├─ Presentation
+│  ├─ Http
+│  └─ Grpc
+├─ Consumers
+├─ Properties
+├─ Protos
+├─ Program.cs
+├─ appsettings.json
+├─ appsettings.Development.json
+├─ Platform.<Service>.API.csproj
+└─ Platform.<Service>.API.Tests
+   ├─ Application
+   ├─ Infrastructure
+   ├─ Presentation
+   └─ Consumers
+```
+
+### Mapping nhanh theo loại file
+
+```text
+*Controller.cs                  -> Presentation/Http
+*IntegrationService.cs          -> Presentation/Grpc
+*Command.cs                     -> Application/Features/<Feature>/Commands
+*Handler.cs                     -> Application/Features/<Feature>/Commands hoặc Queries
+*Validator.cs                   -> Application/Features/<Feature>/Commands
+*Query.cs                       -> Application/Features/<Feature>/Queries
+*Response.cs                    -> Application/Features/<Feature>/Responses
+*Mapper.cs                      -> Application/Features/<Feature>/Mappers hoặc Presentation/Grpc
+<Service>DbContext.cs           -> Infrastructure/Data
+<Service>DbContextFactory.cs    -> Infrastructure/Data
+<Entity>Model.cs                -> Infrastructure/Persistence/Models
+<Entity>Configuration.cs        -> Infrastructure/Persistence/Configurations
+<Options>.cs                    -> Infrastructure/Configurations
+<ServiceClient>.cs              -> Infrastructure/Integrations
+<Provider>.cs                   -> Infrastructure/Providers
+<EventConsumer>.cs              -> Consumers
+```
+
+### Ghi chú về `Consumers`
+
+- ưu tiên `Consumers/` ở root service
+- không ưu tiên `Infrastructure/Consumers`
+- xem `Consumers` là một entrypoint của service, ngang hàng với `Presentation`
