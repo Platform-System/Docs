@@ -7,50 +7,51 @@ Bản đồ tri thức hệ thống Microservices Polyrepo.
 ## 🗺️ Master Map
 
 ### 1. User Interfaces (Hệ thống giao diện)
-- [<img src="./assets/labels/portal_ui.svg" alt="Platform.PortalUI">](https://github.com/Platform-System/Platform.PortalUI): Cổng mua sắm trực tuyến Nexus dành cho khách hàng.
-- [<img src="./assets/labels/merchant_ui.svg" alt="Platform.MerchantUI">](https://github.com/Platform-System/Platform.MerchantUI): Cổng thông tin và quản lý dành cho Đối tác/Người bán (Merchant).
-- [<img src="./assets/labels/admin_ui.svg" alt="Platform.AdminUI">](https://github.com/Platform-System/Platform.AdminUI): Hệ thống quản trị tập trung dành cho Ban điều hành (Admin).
+- [Platform.PortalUI](https://github.com/Platform-System/Platform.PortalUI): Cổng mua sắm trực tuyến Nexus dành cho khách hàng.
+- [Platform.MerchantUI](https://github.com/Platform-System/Platform.MerchantUI): Cổng thông tin và quản lý dành cho Đối tác/Người bán (Merchant).
+- [Platform.AdminUI](https://github.com/Platform-System/Platform.AdminUI): Hệ thống quản trị tập trung dành cho Ban điều hành (Admin).
 
 ### 2. Entry Point (Gateway)
-- [<img src="./assets/labels/gateway.svg" alt="Platform.Gateway">](https://github.com/Platform-System/Platform.Gateway): Cổng tiếp nhận & Điều hướng yêu cầu (Gateway).
+- [Platform.Gateway](https://github.com/Platform-System/Platform.Gateway): Cổng tiếp nhận & Điều hướng yêu cầu (Gateway).
 
 ### 3. APIs (Services nghiệp vụ)
-- [<img src="./assets/labels/catalog_service.svg" alt="Platform.Catalog.API">](https://github.com/Platform-System/Platform.Catalog.API): Quản lý Sản phẩm & Danh mục.
-- [<img src="./assets/labels/identity_service.svg" alt="Platform.Identity.API">](https://github.com/Platform-System/Platform.Identity.API): Quản lý Tài khoản & Xác thực người dùng.
-- [<img src="./assets/labels/ordering_service.svg" alt="Platform.Ordering.API">](https://github.com/Platform-System/Platform.Ordering.API): Quản lý Đặt hàng & Đơn hàng.
-- [<img src="./assets/labels/store_service.svg" alt="Platform.Store.API">](https://github.com/Platform-System/Platform.Store.API): Quản lý Cửa hàng & Sản phẩm bán lẻ.
-- [<img src="./assets/labels/payment_service.svg" alt="Platform.Payment.API">](https://github.com/Platform-System/Platform.Payment.API): Quản lý Thanh toán & Giao dịch.
+- [Platform.Catalog.API](https://github.com/Platform-System/Platform.Catalog.API): Quản lý Sản phẩm & Danh mục.
+- [Platform.Identity.API](https://github.com/Platform-System/Platform.Identity.API): Quản lý Tài khoản & Xác thực người dùng.
+- [Platform.Ordering.API](https://github.com/Platform-System/Platform.Ordering.API): Quản lý Đặt hàng & Đơn hàng.
+- [Platform.Store.API](https://github.com/Platform-System/Platform.Store.API): Quản lý Cửa hàng & Sản phẩm bán lẻ.
+- [Platform.Payment.API](https://github.com/Platform-System/Platform.Payment.API): Quản lý Thanh toán & Giao dịch.
 
 ### 4. Functions (Serverless Modules)
-- [<img src="./assets/labels/product_cover_upload.svg" alt="Platform.ProductCoverUpload.Function">](https://github.com/Platform-System/Platform.ProductCoverUpload.Function): Serverless function xử lý tải lên ảnh bìa sản phẩm.
-- [<img src="./assets/labels/store_image_upload.svg" alt="Platform.StoreImageUpload.Function">](https://github.com/Platform-System/Platform.StoreImageUpload.Function): Serverless function xử lý tải lên ảnh cửa hàng.
+- [Platform.ProductCoverUpload.Function](https://github.com/Platform-System/Platform.ProductCoverUpload.Function): Serverless function xử lý tải lên ảnh bìa sản phẩm.
+- [Platform.StoreImageUpload.Function](https://github.com/Platform-System/Platform.StoreImageUpload.Function): Serverless function xử lý tải lên ảnh cửa hàng.
 
 ### 5. Core (Xương sống kiến trúc)
-- [<img src="./assets/labels/api.svg" alt="Platform.Api">](https://github.com/Platform-System/Platform.Api): Thư viện cơ sở cho các Web APIs.
-- [<img src="./assets/labels/application.svg" alt="Platform.Application">](https://github.com/Platform-System/Platform.Application): Quy trình xử lý hồ sơ (Use Cases, MediatR).
-- [<img src="./assets/labels/contracts.svg" alt="Platform.Contracts">](https://github.com/Platform-System/Platform.Contracts): Ngôn ngữ liên lạc chung (Integration Events).
-- [<img src="./assets/labels/domain.svg" alt="Platform.Domain">](https://github.com/Platform-System/Platform.Domain): Logic nghiệp vụ cốt lõi (Entities, Rules).
-- [<img src="./assets/labels/infrastructure.svg" alt="Platform.Infrastructure">](https://github.com/Platform-System/Platform.Infrastructure): Hiện thực hóa công nghệ (RabbitMQ, Postgres).
+- [Platform.Api](https://github.com/Platform-System/Platform.Api): Thư viện cơ sở cho các Web APIs.
+- [Platform.Application](https://github.com/Platform-System/Platform.Application): Quy trình xử lý hồ sơ (Use Cases, MediatR).
+- [Platform.Contracts](https://github.com/Platform-System/Platform.Contracts): Ngôn ngữ liên lạc chung (Integration Events).
+- [Platform.Domain](https://github.com/Platform-System/Platform.Domain): Logic nghiệp vụ cốt lõi (Entities, Rules).
+- [Platform.Infrastructure](https://github.com/Platform-System/Platform.Infrastructure): Hiện thực hóa công nghệ (RabbitMQ, Postgres).
 
 ### 6. Foundation (Hạt nhân dùng chung)
-- [<img src="./assets/labels/buildingblocks.svg" alt="Platform.BuildingBlocks">](https://github.com/Platform-System/Platform.BuildingBlocks): Các công cụ lập trình cơ bản.
-- [<img src="./assets/labels/shared_kernel.svg" alt="Platform.SharedKernel">](https://github.com/Platform-System/Platform.SharedKernel): Hạt nhân nghiệp vụ dùng chung.
-- [<img src="./assets/labels/systemcontext.svg" alt="Platform.SystemContext">](https://github.com/Platform-System/Platform.SystemContext): Ngữ cảnh người dùng & Hệ thống.
+- [Platform.BuildingBlocks](https://github.com/Platform-System/Platform.BuildingBlocks): Các công cụ lập trình cơ bản.
+- [Platform.SharedKernel](https://github.com/Platform-System/Platform.SharedKernel): Hạt nhân nghiệp vụ dùng chung.
+- [Platform.SystemContext](https://github.com/Platform-System/Platform.SystemContext): Ngữ cảnh người dùng & Hệ thống.
 
 ### 7. Technical (Tiện ích công nghệ)
-- [<img src="./assets/labels/email_service.svg" alt="Platform.Email">](https://github.com/Platform-System/Platform.Email): Dịch vụ hỗ trợ gửi thông báo Email.
-- [<img src="./assets/labels/messaging.svg" alt="Platform.Messaging">](https://github.com/Platform-System/Platform.Messaging): Cơ chế giao tiếp Event-Driven (RabbitMQ).
+- [Platform.Email](https://github.com/Platform-System/Platform.Email): Dịch vụ hỗ trợ gửi thông báo Email.
+- [Platform.Messaging](https://github.com/Platform-System/Platform.Messaging): Cơ chế giao tiếp Event-Driven (RabbitMQ).
 
 ### 8. DevOps Automation (CI-CD & IaC)
-- [<img src="./assets/labels/ci_cd.svg" alt="Platform.CI-CD">](https://github.com/Platform-System/Platform.CI-CD): Quy trình tự động hóa GitHub Actions.
-- [<img src="./assets/labels/iac.svg" alt="Platform.IaC">](https://github.com/Platform-System/Platform.IaC): Cấu hình hạ tầng Docker.
+- [Platform.CI-CD](https://github.com/Platform-System/Platform.CI-CD): Quy trình tự động hóa GitHub Actions.
+- [Platform.IaC](https://github.com/Platform-System/Platform.IaC): Cấu hình hạ tầng Docker.
 
 ### 9. System Documentation (Docs & Profile)
-- [<img src="./assets/labels/docs.svg" alt="Platform.Docs">](https://github.com/Platform-System/Platform.Docs): Tài liệu hệ thống Master.
-- [<img src="./assets/labels/profile_label.svg" alt="Platform.Profile">](https://github.com/Platform-System/.github): Hồ sơ hệ thống và Dashboards.
+- [Platform.Docs](https://github.com/Platform-System/Platform.Docs): Tài liệu hệ thống Master.
+- [Platform.Profile](https://github.com/Platform-System/.github): Hồ sơ hệ thống và Dashboards.
 
 ## Backend Docs
 
+- [Backend Service Structure](./BACKEND_SERVICE_STRUCTURE.md): Ban do src chuan cho cac backend service de nhin folder la biet file nen nam o dau.
 - [Migration Conventions](./MIGRATION_CONVENTIONS.md): Convention cho `DbContext`, `DbContextFactory` va `EF Core Migrations` trong cac backend service.
 - [Microservice Project Arch Skill Backup](./MICROSERVICE_PROJECT_ARCH_SKILL.md): Ban backup trong repo cho local Codex skill `microservice-project-arch`.
 
