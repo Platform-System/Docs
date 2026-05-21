@@ -51,7 +51,7 @@ Bản đồ tri thức hệ thống Microservices Polyrepo.
 
 ## Backend Docs
 
-- [Backend Service Structure](./BACKEND_SERVICE_STRUCTURE.md): Ban do src chuan cho cac backend service de nhin folder la biet file nen nam o dau.
+- [Backend Service Structure](./BACKEND_SERVICE_STRUCTURE.md): Bản đồ src chuẩn cho các backend service để nhìn folder là biết file nên nằm ở đâu.
 - [Migration Conventions](./MIGRATION_CONVENTIONS.md): Convention cho `DbContext`, `DbContextFactory` va `EF Core Migrations` trong cac backend service.
 - [Microservice Project Arch Skill Backup](./MICROSERVICE_PROJECT_ARCH_SKILL.md): Ban backup trong repo cho local Codex skill `microservice-project-arch`.
 

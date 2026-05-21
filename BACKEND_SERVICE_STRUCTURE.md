@@ -1,14 +1,14 @@
 # Backend Service Structure
 
-Tai lieu nay chot "ban do src" cho cac backend service trong he `Platform.*.API`.
+Tài liệu này chốt "bản đồ src" cho các backend service trong hệ `Platform.*.API`.
 
-Muc tieu:
+Mục tiêu:
 
-- nhin folder la biet file nen nam o dau
-- tao feature moi ma khong bi dat sai tang
-- giu style dong nhat giua cac service
+- nhìn folder là biết file nên nằm ở đâu
+- tạo feature mới mà không bị đặt sai tầng
+- giữ style đồng nhất giữa các service
 
-## Cây thu muc chuan
+## Cây thư mục chuẩn
 
 ```text
 Platform.<Service>.API
@@ -63,86 +63,86 @@ Platform.<Service>.API
    └─ Consumers
 ```
 
-## Y nghia tung tang
+## Ý nghĩa từng tầng
 
 - `Application`
-  - chua use case
-  - noi dat `Command`, `Query`, `Handler`, `Validator`, `Response`, `Mapper`
-  - neu muon biet service "lam gi" thi tim o day
+  - chứa use case
+  - nơi đặt `Command`, `Query`, `Handler`, `Validator`, `Response`, `Mapper`
+  - nếu muốn biết service "làm gì" thì tìm ở đây
 
 - `Domain`
-  - chua business core
-  - noi dat `Entity`, `Enum`, `Error`, `ValueObject`, `Domain Event`
-  - khong phu thuoc HTTP, DB, gRPC
+  - chứa business core
+  - nơi đặt `Entity`, `Enum`, `Error`, `ValueObject`, `Domain Event`
+  - không phụ thuộc HTTP, DB, gRPC
 
 - `Infrastructure`
-  - chua DB va ket noi ben ngoai
-  - noi dat `DbContext`, migration, EF model/configuration, options, gRPC/HTTP client, provider, outbox
+  - chứa DB và kết nối bên ngoài
+  - nơi đặt `DbContext`, migration, EF model/configuration, options, gRPC/HTTP client, provider, outbox
 
 - `Presentation`
-  - chua HTTP controller va gRPC service
-  - nen mong
-  - nhan request, goi command/query, tra response
+  - chứa HTTP controller và gRPC service
+  - nên mỏng
+  - nhận request, gọi command/query, trả response
 
 - `Consumers`
-  - chua message consumer
-  - xem nhu mot entrypoint cua service, ngang hang voi `Presentation`
-  - convention chot la dat `Consumers/` o root service, khong uu tien `Infrastructure/Consumers`
+  - chứa message consumer
+  - xem như một entrypoint của service, ngang hàng với `Presentation`
+  - convention chốt là đặt `Consumers/` ở root service, không ưu tiên `Infrastructure/Consumers`
 
 - `Program.cs`
   - entry point bootstrap service
-  - chi nen chua wiring nhu:
+  - chỉ nên chứa wiring như:
     - `AddApplication(...)`
     - `Add<Service>Infrastructure(...)`
     - auth, runtime, swagger
     - `ApplyMigrationsAsync<TDbContext>()`
     - `MapControllers()`, `MapGrpcService(...)`
 
-## Dat file vao dau
+## Đặt file vào đâu
 
-- them API moi
+- thêm API mới
   - `Presentation/Http`
-  - va logic o `Application/Features/<FeatureName>`
+  - và logic ở `Application/Features/<FeatureName>`
 
-- them gRPC endpoint moi
+- thêm gRPC endpoint mới
   - `Presentation/Grpc`
 
-- them business rule, entity, error nghiep vu
+- thêm business rule, entity, error nghiệp vụ
   - `Domain`
 
-- them `DbContext`, migration, EF model, EF configuration
+- thêm `DbContext`, migration, EF model, EF configuration
   - `Infrastructure/Data`
   - `Infrastructure/Persistence/Models`
   - `Infrastructure/Persistence/Configurations`
 
-- them config options
+- thêm config options
   - `Infrastructure/Configurations`
 
-- them client goi service khac
+- thêm client gọi service khác
   - `Infrastructure/Integrations`
 
-- them payment provider / sandbox provider / strategy
+- thêm payment provider / sandbox provider / strategy
   - `Infrastructure/Providers`
 
-- them outbox dispatcher / outbox writer
+- thêm outbox dispatcher / outbox writer
   - `Infrastructure/Outbox`
 
-- them consumer RabbitMQ / MassTransit
+- thêm consumer RabbitMQ / MassTransit
   - `Consumers`
 
-## Rule nho nhanh
+## Rule nhớ nhanh
 
-- `Presentation` = cua vao
-- `Application` = xu ly use case
-- `Domain` = luat nghiep vu cot loi
-- `Infrastructure` = cham DB va ben ngoai
-- `Consumers` = cua vao async
+- `Presentation` = cửa vào
+- `Application` = xử lý use case
+- `Domain` = luật nghiệp vụ cốt lõi
+- `Infrastructure` = chạm DB và bên ngoài
+- `Consumers` = cửa vào async
 
 ## Notes
 
-- Khac biet do domain la binh thuong.
-  - vi du service co `Providers` hoac `Outbox` khong co nghia la lech style
-- Lech style chi xay ra khi dat sai tang.
-  - vi du business logic day trong controller
-  - hoac migration nam sai cho
-  - hoac consumer bi chon vao folder khong ro vai tro
+- Khác biệt do domain là bình thường.
+  - ví dụ service có `Providers` hoặc `Outbox` không có nghĩa là lệch style
+- Lệch style chỉ xảy ra khi đặt sai tầng.
+  - ví dụ business logic dày trong controller
+  - hoặc migration nằm sai chỗ
+  - hoặc consumer bị chôn vào folder không rõ vai trò
