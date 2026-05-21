@@ -49,6 +49,11 @@ Bản đồ tri thức hệ thống Microservices Polyrepo.
 - [<img src="./assets/labels/docs.svg" alt="Platform.Docs">](https://github.com/Platform-System/Platform.Docs): Tài liệu hệ thống Master.
 - [<img src="./assets/labels/profile_label.svg" alt="Platform.Profile">](https://github.com/Platform-System/.github): Hồ sơ hệ thống và Dashboards.
 
+## Backend Docs
+
+- [Migration Conventions](./MIGRATION_CONVENTIONS.md): Convention cho `DbContext`, `DbContextFactory` va `EF Core Migrations` trong cac backend service.
+- [Microservice Project Arch Skill Backup](./MICROSERVICE_PROJECT_ARCH_SKILL.md): Ban backup trong repo cho local Codex skill `microservice-project-arch`.
+
 
 
 
