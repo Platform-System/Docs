@@ -123,11 +123,15 @@ Pattern cu can han che mo rong:
   - `OrdersController`
 - route uu tien explicit thay vi phu thuoc `[controller]` neu dang chot API public lau dai
 - tach ro public surface va manage surface neu khac audience
+- mac dinh controller khai bao `[Authorize]` o class-level de tranh mo nham endpoint moi
+- endpoint public chi mo bang `[AllowAnonymous]` o method-level
 
 Vi du:
 
 - public: `api/stores`
 - manage: `api/manage/stores`
+- public: `api/products`, `api/categories`, `api/product-medias`
+- manage: `api/manage/products`, `api/manage/categories`
 
 ## 11. Integration rule
 
@@ -200,6 +204,12 @@ Trang thai:
 - response DTO da vao `Responses`
 - route explicit da ro hon cho `products`, `categories`, `product-medias`
 - da tach ro public product listing theo store slug va manage surface pending owner review
+- da tach ro public surface va manage surface:
+  - public: `api/products`, `api/categories`, `api/product-medias`, `api/stores/{slug}/products`
+  - manage: `api/manage/products`, `api/manage/categories`, `api/manage/stores/me/products`
+- guardrail auth da ro:
+  - controller mac dinh `[Authorize]`
+  - action public doc du lieu dung `[AllowAnonymous]`
 
 Con lech:
 
@@ -208,7 +218,7 @@ Con lech:
 Nen chinh tiep:
 
 1. giu `Shared` chi cho utility khong phai response neu thuc su can
-2. neu can cleanup sau, can nhac co nen doi ten `StoreProductsController` de phan biet ro public surface va manage surface hon nua hay khong
+2. neu sau nay them route moi, giu dung nguyen tac tach rieng `public` va `manage` ngay tu dau
 
 ### `Platform.Ordering.API`
 
