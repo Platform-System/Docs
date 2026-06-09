@@ -237,8 +237,8 @@ Ket qua:
 
 ### Identity -> Wallet
 
-- `Identity.API` goi gRPC `EnsureWallet`
-- duoc trigger trong `SyncUserSessionHandler`
+- `Identity.API` publish Kafka event `IdentityUserSynced`
+- `Wallet.API` consume event va tao vi neu user chua co vi
 
 ### Ordering -> Wallet
 

@@ -52,6 +52,7 @@ Bản đồ tri thức hệ thống Microservices Polyrepo.
 ## Backend Docs
 
 - [Backend Service Structure](./BACKEND_SERVICE_STRUCTURE.md): Bản đồ src chuẩn cho các backend service để nhìn folder là biết file nên nằm ở đâu.
+- [Kafka Flow Conventions](./KAFKA_FLOW_CONVENTIONS.md): Convention triển khai flow Kafka moi, gom outbox, consumer, retry, DLT va checklist test.
 - [Migration Conventions](./MIGRATION_CONVENTIONS.md): Convention cho `DbContext`, `DbContextFactory` va `EF Core Migrations` trong cac backend service.
 - [Microservice Project Arch Skill Backup](./MICROSERVICE_PROJECT_ARCH_SKILL.md): Ban backup trong repo cho local Codex skill `microservice-project-arch`.
 
