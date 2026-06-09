@@ -274,6 +274,16 @@ Checklist nay dung khi mo them 1 flow Kafka moi theo pattern hien tai.
 6. test duplicate replay van idempotent
 7. check base `appsettings.json` chi giu shape rong
 
+## Reconciliation
+
+Retry xu ly loi tam thoi. Reconciliation xu ly phan sai lech trang thai con sot lai khi retry/DLT khong du.
+
+Trang thai hien tai trong repo:
+
+- `Platform.Ordering.API` da co payment reconciliation job de doi soat `Payments/Orders` pending voi `Platform.Payment.API`
+- `Platform.Wallet.API` da co topup reconciliation job de doi soat topup pending voi `Platform.Payment.API`
+- `Platform.Identity.API -> Platform.Wallet.API` hien tai van dua chinh vao outbox + retry + DLT, chua co source-of-truth reconciliation rieng
+
 ## Current reference files
 
 Neu can copy dung pattern hien tai, doc truoc:
