@@ -114,6 +114,7 @@ Khong duoc:
 Neu flow moi giong pattern hien tai, uu tien dung cac thanh phan da co trong `Platform.Messaging`:
 
 - `KafkaConsumerWithRetryBase<TMessage>`
+- `KafkaJsonConsumerWithPersistentRetryBase<TMessage, TOptions>`
 - `KafkaOutboxDispatcherBase<TClaimedMessage>`
 - `KafkaRetryEnvelope<TPayload>`
 - `KafkaDeadLetterEnvelope<TPayload>`
@@ -127,6 +128,22 @@ Chi nen viet implementation rieng khi:
 - transport khac pattern hien tai
 - khong can retry/outbox
 - co business rule dac thu ma base khong cover duoc
+
+### Copy recipe cho consumer moi
+
+Neu flow moi la JSON event + persisted retry DB, uu tien copy theo recipe nay:
+
+1. tao `TOptions : KafkaConsumerTopicRetryOptions`
+2. cho consumer inherit `KafkaJsonConsumerWithPersistentRetryBase<TMessage, TOptions>`
+3. chi override:
+   - `IsMessageValid`
+   - `InvalidPayloadErrorMessage`
+   - `GetMessageKey`
+   - `GetOccurredAt` neu can
+   - `ProcessMessageAsync`
+   - `StoreRetryAsync`
+   - `ProcessDueRetryMessageAsync`
+4. dung `SerializerOptions`, `ScopeFactory`, `ConsumerOptions` tu base thay vi tu tao lai
 
 ## Topic naming
 
@@ -208,6 +225,54 @@ Khi chuyen mot flow sync sang Kafka, di theo thu tu nay:
 7. them retry/DLT
 8. them test theo checklist
 9. chi xoa call sync cu khi da confirm khong con caller can no
+
+## New flow quick checklist
+
+Checklist nay dung khi mo them 1 flow Kafka moi theo pattern hien tai.
+
+### Producer
+
+1. them event contract trong `Platform.Contracts`
+2. them outbox writer / notification handler
+3. map event -> Kafka topic trong dispatcher
+4. them options class cho topic + DLT + retry
+5. them `appsettings.Development.json`
+6. them env vao `Platform.IaC/.env.example`
+7. them env mapping vao `Platform.IaC/docker-compose.yml`
+8. them migration neu producer can them outbox state moi
+
+### Consumer
+
+1. them `TOptions : KafkaConsumerTopicRetryOptions`
+2. tao consumer inherit `KafkaJsonConsumerWithPersistentRetryBase<TMessage, TOptions>`
+3. override:
+   - `IsMessageValid`
+   - `InvalidPayloadErrorMessage`
+   - `GetMessageKey`
+   - `GetOccurredAt` neu can
+   - `ProcessMessageAsync`
+   - `StoreRetryAsync`
+   - `ProcessDueRetryMessageAsync`
+4. dung helper co san neu la persisted retry:
+   - `KafkaRetryLeaseHelper`
+   - `KafkaRetryStoreHelper`
+   - `KafkaPersistedRetryProcessor`
+5. them retry entity + index unique theo business identity + consumer group
+6. them migration
+7. register options + hosted service trong DI
+8. them `appsettings.Development.json`
+9. them env vao `Platform.IaC/.env.example`
+10. them env mapping vao `Platform.IaC/docker-compose.yml`
+
+### Verify
+
+1. build service producer
+2. build service consumer
+3. test `success`
+4. test `retry -> success`
+5. test `max retry -> DLT`
+6. test duplicate replay van idempotent
+7. check base `appsettings.json` chi giu shape rong
 
 ## Current reference files
 
