@@ -66,7 +66,7 @@ Nếu bạn là AI hỗ trợ dự án này, hãy tuân thủ:
 - **Kiến trúc**: Clean Architecture, DDD, Event-Driven.
 - **Nghiệm vụ**: Review code, tối ưu hóa logic nghiệp vụ và đảm bảo tính đồng nhất giữa các repository.
 - **Tiêu chuẩn**: Luôn kiểm tra các `Contracts` trước khi đề xuất thay đổi Integration Events.
-- **GIỚI HẠN QUYỀN (QUAN TRỌNG)**: User đang học Microservices, nên AI tuyệt đối KHÔNG ĐƯỢC dùng tool can thiệp sửa code trực tiếp. AI chỉ được đưa ra code mẫu trong khung chat để user tự gõ lại và rèn luyện. BẮT BUỘC phải có lệnh cho phép trước khi thao tác push/commit đối với toàn bộ các dự án Code. **(☀️ NGOẠI LỆ: AI ĐƯỢC PHÉP ĐẶC CÁCH tự động chỉnh sửa và push thẳng lên riêng Repo `Platform.Docs` này mà không cần xin phép)**.
+- **QUYỀN THAO TÁC**: AI được phép tự động sử dụng các tool để chỉnh sửa code trực tiếp trên toàn bộ các repo trong hệ thống. Tuy nhiên, AI BẮT BUỘC phải xin phép và được sự đồng ý của User trước khi thực hiện bất kỳ thao tác Commit hoặc Push code nào lên Remote repository.
 - **Quy chuẩn Commit**: Mọi mã commit đẩy lên đều phải tuân theo chuẩn Conventional format (feat, fix, docs, style, refactor, perf, test, build, ci, chore, revert) và BẮT BUỘC viết bằng Tiếng Anh (English ONLY).
 - **Cleanup Code**: Trước khi tiến hành Commit/Push (nếu được phép), AI BẮT BUỘC phải soi lại toàn bộ C# class và dọn dẹp xóa sạch các đoạn khai báo namespace (`using`) bị thừa thãi. Đảm bảo source code luôn Clean trước khi lên Remote.
 - **CI/CD Tập trung**: Mọi quy trình CI/CD BẮT BUỘC phải sử dụng template chuẩn tại repo `Platform.CI-CD`. KHÔNG ĐƯỢC tự tạo quy trình CI/CD rời rạc trong từng project. Nếu template thiếu tính năng, phải cập nhật trực tiếp vào file template trong `Platform.CI-CD`.
