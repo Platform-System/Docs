@@ -49,6 +49,10 @@ Bản đồ tri thức hệ thống Microservices Polyrepo.
 - [Platform.Docs](https://github.com/Platform-System/Platform.Docs): Tài liệu hệ thống Master.
 - [Platform.Profile](https://github.com/Platform-System/.github): Hồ sơ hệ thống và Dashboards.
 
+## Frontend Docs
+
+- [Frontend Architecture](./FRONTEND_ARCHITECTURE.md): Kiến trúc phân lớp 3 tầng, quy tắc import bảo vệ đóng gói và cơ chế cấu hình môi trường động ở runtime.
+
 ## Backend Docs
 
 - [Backend Service Structure](./BACKEND_SERVICE_STRUCTURE.md): Bản đồ src chuẩn cho các backend service để nhìn folder là biết file nên nằm ở đâu.
