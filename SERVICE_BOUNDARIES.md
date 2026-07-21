@@ -7,10 +7,10 @@ Tai lieu nay gop 2 muc tieu vao cung 1 cho:
 
 Pham vi ap dung:
 
-- `Platform.Catalog.API`
-- `Platform.Store.API`
-- `Platform.Ordering.API`
-- `Platform.Identity.API`
+- `Catalog.API`
+- `Store.API`
+- `Ordering.API`
+- `Identity.API`
 
 ## 1. Rule cot loi
 
@@ -159,7 +159,7 @@ Vi du:
 
 ## 14. Service alignment snapshot
 
-### `Platform.Store.API`
+### `Store.API`
 
 Trang thai:
 
@@ -177,7 +177,7 @@ Nen chinh tiep:
 
 1. neu can cleanup sau, uu tien doi ten noi bo cho sat hon voi `activation`
 
-### `Platform.Identity.API`
+### `Identity.API`
 
 Trang thai:
 
@@ -194,7 +194,7 @@ Nen chinh tiep:
 
 1. xoa folder `Shared` rong
 
-### `Platform.Catalog.API`
+### `Catalog.API`
 
 Trang thai:
 
@@ -220,7 +220,7 @@ Nen chinh tiep:
 1. giu `Shared` chi cho utility khong phai response neu thuc su can
 2. neu sau nay them route moi, giu dung nguyen tac tach rieng `public` va `manage` ngay tu dau
 
-### `Platform.Ordering.API`
+### `Ordering.API`
 
 Trang thai:
 

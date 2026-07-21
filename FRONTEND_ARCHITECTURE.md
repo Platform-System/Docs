@@ -1,6 +1,6 @@
 # Kiến Trúc Frontend và Quy Ước Thiết Kế Hệ Thống (Frontend Architecture & Design Conventions)
 
-Tài liệu này định nghĩa chi tiết kiến trúc frontend được áp dụng cho toàn bộ các ứng dụng trong hệ sinh thái (bao gồm `Platform.AdminUI`, `Platform.PaymentUI`, `Platform.MerchantUI`, và `Platform.PortalUI`). Kiến trúc này được thiết kế theo mô hình **Domain-Driven Feature-Sliced (Kiến trúc phân lát theo miền tính năng)** kết hợp với **Monorepo Shared Design System** nhằm phục vụ khả năng mở rộng (scalability), dễ bảo trì (maintainability), và phân tách trách nhiệm rõ ràng (decoupling).
+Tài liệu này định nghĩa chi tiết kiến trúc frontend được áp dụng cho toàn bộ các ứng dụng trong hệ sinh thái (bao gồm `AdminUI`, `PaymentUI`, `MerchantUI`, và `PortalUI`). Kiến trúc này được thiết kế theo mô hình **Domain-Driven Feature-Sliced (Kiến trúc phân lát theo miền tính năng)** kết hợp với **Monorepo Shared Design System** nhằm phục vụ khả năng mở rộng (scalability), dễ bảo trì (maintainability), và phân tách trách nhiệm rõ ràng (decoupling).
 
 ---
 
@@ -18,9 +18,9 @@ Tài liệu này định nghĩa chi tiết kiến trúc frontend được áp d�
 ```mermaid
 graph TD
     subgraph Core Apps
-        Admin[Platform.AdminUI]
-        Payment[Platform.PaymentUI]
-        Merchant[Platform.MerchantUI]
+        Admin[AdminUI]
+        Payment[PaymentUI]
+        Merchant[MerchantUI]
     end
 
     subgraph App Shared Layer
@@ -29,7 +29,7 @@ graph TD
     end
 
     subgraph Cross-App Shared Layer
-        DesignUI[Platform.DesignUI @platform-system/design-ui]
+        DesignUI[DesignUI @system/design-ui]
     end
 
     Admin --> SharedAdmin
@@ -43,7 +43,7 @@ graph TD
 ```
 
 ### Lớp 1: Cross-App Shared (Dùng chung toàn hệ thống)
-*   **Vị trí**: `Platform.DesignUI` (Package cục bộ `@platform-system/design-ui`).
+*   **Vị trí**: `DesignUI` (Package cục bộ `@system/design-ui`).
 *   **Trách nhiệm**:
     *   Các biến phong cách, Tokens màu sắc hệ thống (CSS Variables, Tailwind Tokens).
     *   Linh kiện giao diện gốc (Atomic Components) không chứa logic nghiệp vụ backend: `Button`, `Input`, `Table`, `Badge`, `Card`, `FilterBar`, `EmptyStatePanel`.
@@ -54,7 +54,7 @@ graph TD
 *   **Trách nhiệm**:
     *   Các linh kiện bố cục chính (Layout Shell, Sidebar, Navigation).
     *   Các wrapper tùy chỉnh cấu hình riêng cho ứng dụng đó.
-*   **Quy tắc**: Chỉ dùng chung giữa các màn hình *trong cùng một ứng dụng*. Nếu một component lớp này bắt đầu được copy sang ứng dụng thứ hai, nó phải được tổng quát hóa và chuyển xuống Lớp 1 (`Platform.DesignUI`).
+*   **Quy tắc**: Chỉ dùng chung giữa các màn hình *trong cùng một ứng dụng*. Nếu một component lớp này bắt đầu được copy sang ứng dụng thứ hai, nó phải được tổng quát hóa và chuyển xuống Lớp 1 (`DesignUI`).
 
 ### Lớp 3: Feature Local (Đóng gói theo tính năng)
 *   **Vị trí**: `src/features/[feature-name]/`
@@ -190,7 +190,7 @@ export function useFilteredTransactions(page = 1, pageSize = 5) {
 // Ví dụ: features/checkout/screens/CheckoutScreen.tsx
 import React, { useState } from 'react';
 import { useFilteredTransactions } from '../hooks/useFilteredTransactions';
-import { Table, FilterBar, Card, Spinner } from '@platform-system/design-ui';
+import { Table, FilterBar, Card, Spinner } from '@system/design-ui';
 import { OrderSummary } from '../components/OrderSummary';
 
 export const CheckoutScreen: React.FC = () => {
@@ -264,7 +264,7 @@ Hệ thống phân chia rõ rệt trạng thái thành 3 nhóm để tối ưu h
     *   *Nền*: `bg-background`, `bg-card`, `bg-secondary`
     *   *Chữ*: `text-foreground`, `text-muted-foreground`
     *   *Đường viền*: `border-border`
-*   **Viết class có ngữ nghĩa**: Sử dụng hàm `cn(...)` được cung cấp từ thư viện `@platform-system/design-ui` để ghép class có điều kiện một cách an sau.
+*   **Viết class có ngữ nghĩa**: Sử dụng hàm `cn(...)` được cung cấp từ thư viện `@system/design-ui` để ghép class có điều kiện một cách an sau.
 
 ---
 
@@ -279,7 +279,7 @@ Khi được yêu cầu xây dựng một tính năng mới (ví dụ: `Wallet T
 - [ ] **Bước 5**: Ráp nối toàn bộ trong `features/wallet-topup/screens/WalletTopupScreen.tsx`.
 - [ ] **Bước 6**: Liên kết màn hình này vào router chính của ứng dụng tại `src/core/routes.tsx`.
 - [ ] **Bước 7**: Chạy lệnh `npm run typecheck` để đảm bảo không phát sinh lỗi biên dịch TypeScript.
-- [ ] **Bước 8**: Đảm bảo các import từ `Platform.DesignUI` chỉ sử dụng root import (không import từ các subpaths).
+- [ ] **Bước 8**: Đảm bảo các import từ `DesignUI` chỉ sử dụng root import (không import từ các subpaths).
 - [ ] **Bước 9**: Sử dụng hàm `getEnv` khi đọc các biến môi trường cấu hình động.
 
 ---
@@ -309,7 +309,7 @@ Kiến trúc **Domain-Driven Feature-Sliced** và việc chia lớp (`api` / `ho
     *   Nhờ đó, các Custom Hooks (`useFilteredTransactions`) ở phía Client vẫn giữ nguyên cấu trúc gọi mà không cần sửa đổi lớn.
 
 ### 8.3 Chỉ thị Client Component (`"use client"`)
-*   Vì các Component trong `Platform.DesignUI` và các Custom Hooks nghiệp vụ sử dụng React State (`useState`, `useEffect`, React Query), hãy thêm chỉ thị `"use client"` ở đầu các file Screen (`screens/`) và Component con để khai báo Next.js Render chúng dưới dạng Client Components.
+*   Vì các Component trong `DesignUI` và các Custom Hooks nghiệp vụ sử dụng React State (`useState`, `useEffect`, React Query), hãy thêm chỉ thị `"use client"` ở đầu các file Screen (`screens/`) và Component con để khai báo Next.js Render chúng dưới dạng Client Components.
 
 ---
 
@@ -317,11 +317,11 @@ Kiến trúc **Domain-Driven Feature-Sliced** và việc chia lớp (`api` / `ho
 
 Để tránh phá vỡ tính đóng gói của Design System và đảm bảo khả năng tối ưu hóa bundle (tree-shaking), hệ thống áp dụng các quy tắc sau:
 
-*   **Import từ Root Package**: Các component JS/TS, custom hooks, và helper utilities từ thư mục dùng chung của hệ thống PHẢI được import trực tiếp qua root package `@platform-system/design-ui`.
-    *   *Chấp nhận*: `import { Button, Input } from '@platform-system/design-ui';`
-    *   *Không chấp nhận (Bị cấm)*: `import { Button } from '@platform-system/design-ui/components/button';` hoặc `import { cn } from '@platform-system/design-ui/lib/utils';`
+*   **Import từ Root Package**: Các component JS/TS, custom hooks, và helper utilities từ thư mục dùng chung của hệ thống PHẢI được import trực tiếp qua root package `@system/design-ui`.
+    *   *Chấp nhận*: `import { Button, Input } from '@system/design-ui';`
+    *   *Không chấp nhận (Bị cấm)*: `import { Button } from '@system/design-ui/components/button';` hoặc `import { cn } from '@system/design-ui/lib/utils';`
 *   **Kiểm tra Tự động**: Quy tắc này được cấu hình bằng ESLint rule `no-restricted-imports` trong tất cả các ứng dụng UI và được xác thực tự động trước khi build bởi script `verify-design-ui-imports.mjs`.
-*   **Ngoại lệ**: Các file stylesheet tĩnh (như `@platform-system/design-ui/index.css`) được phép import trực tiếp từ đường dẫn subpath.
+*   **Ngoại lệ**: Các file stylesheet tĩnh (như `@system/design-ui/index.css`) được phép import trực tiếp từ đường dẫn subpath.
 
 ---
 

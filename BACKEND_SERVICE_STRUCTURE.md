@@ -1,6 +1,6 @@
 # Backend Service Structure
 
-Tài liệu này chốt "bản đồ src" cho các backend service trong hệ `Platform.*.API`.
+Tài liệu này chốt "bản đồ src" cho các backend service trong hệ `*.API`.
 
 Mục tiêu:
 
@@ -11,7 +11,7 @@ Mục tiêu:
 ## Sơ đồ nhớ nhanh
 
 ```text
-Platform.<Service>.API
+<Service>.API
 ├─ Application      -> Use case
 ├─ Domain           -> Business core
 ├─ Infrastructure   -> DB + external systems
@@ -23,7 +23,7 @@ Platform.<Service>.API
 ## Cây thư mục chuẩn
 
 ```text
-Platform.<Service>.API
+<Service>.API
 ├─ Application
 │  ├─ Abstractions
 │  │  ├─ Integrations
@@ -67,8 +67,8 @@ Platform.<Service>.API
 ├─ Program.cs
 ├─ appsettings.json
 ├─ appsettings.Development.json
-├─ Platform.<Service>.API.csproj
-└─ Platform.<Service>.API.Tests
+├─ <Service>.API.csproj
+└─ <Service>.API.Tests
    ├─ Application
    ├─ Infrastructure
    ├─ Presentation

@@ -1,6 +1,6 @@
 # Ordering Catalog Stock Saga Draft
 
-Tài liệu này là bản nháp để chuyển flow orchestration stock giữa `Platform.Ordering.API` và `Platform.Catalog.API` từ `gRPC sync` sang `Kafka + Saga`.
+Tài liệu này là bản nháp để chuyển flow orchestration stock giữa `Ordering.API` và `Catalog.API` từ `gRPC sync` sang `Kafka + Saga`.
 
 ## 1. Current Flow
 
@@ -17,10 +17,10 @@ Flow hiện tại:
 
 Code canary:
 
-- `Platform.Ordering.API/Application/Features/Carts/Commands/Checkout/CheckoutCartHandler.cs`
-- `Platform.Ordering.API/Infrastructure/Integrations/Catalog/CatalogClient.cs`
-- `Platform.Ordering.API/Consumers/PaymentCancelledConsumer.cs`
-- `Platform.Ordering.API/Consumers/PaymentSucceededConsumerService.cs`
+- `Ordering.API/Application/Features/Carts/Commands/Checkout/CheckoutCartHandler.cs`
+- `Ordering.API/Infrastructure/Integrations/Catalog/CatalogClient.cs`
+- `Ordering.API/Consumers/PaymentCancelledConsumer.cs`
+- `Ordering.API/Consumers/PaymentSucceededConsumerService.cs`
 
 ## 2. Pain Points
 
@@ -198,6 +198,6 @@ Nếu mục tiêu là học thay vì đổi production ngay:
 
 Bước tiếp theo nên làm:
 
-1. draft event contract theo style `Platform.Contracts`
+1. draft event contract theo style `Contracts`
 2. draft state transition table cho `Order`
 3. draft ownership của từng consumer/producer

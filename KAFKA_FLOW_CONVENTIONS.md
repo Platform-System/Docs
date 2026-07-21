@@ -1,6 +1,6 @@
 # Kafka Flow Conventions
 
-Tai lieu nay chot pattern de mo rong Kafka trong he `Platform.*`.
+Tai lieu nay chot pattern de mo rong Kafka trong he `*`.
 
 Muc tieu:
 
@@ -19,8 +19,8 @@ Convention nay ap dung cho cac flow event-driven moi trong repo, dac biet la cac
 
 Flow tham chieu hien tai:
 
-- `Platform.Identity.API` -> publish `IdentityUserSynced`
-- `Platform.Wallet.API` -> consume event va tao vi neu user chua co vi
+- `Identity.API` -> publish `IdentityUserSynced`
+- `Wallet.API` -> consume event va tao vi neu user chua co vi
 
 ## Producer-side pattern
 
@@ -43,7 +43,7 @@ File dat cho producer:
 - `Application/Features/<Feature>/Notifications`
 - `Application/Abstractions/Messaging`
 - `Infrastructure/Outbox`
-- event contract trong `Platform.Contracts`
+- event contract trong `Contracts`
 
 ## Consumer-side pattern
 
@@ -111,7 +111,7 @@ Khong duoc:
 
 ## Shared base phai uu tien dung
 
-Neu flow moi giong pattern hien tai, uu tien dung cac thanh phan da co trong `Platform.Messaging`:
+Neu flow moi giong pattern hien tai, uu tien dung cac thanh phan da co trong `Messaging`:
 
 - `KafkaConsumerWithRetryBase<TMessage>`
 - `KafkaJsonConsumerWithPersistentRetryBase<TMessage, TOptions>`
@@ -177,7 +177,7 @@ Vi du:
 
 ## Contract rule
 
-Event contract dat trong `Platform.Contracts`.
+Event contract dat trong `Contracts`.
 
 Contract toi thieu nen co:
 
@@ -209,14 +209,14 @@ Moi flow Kafka moi nen co du 4 tang test nay:
    - duplicate replay van idempotent
 
 4. shared base test
-   - `Platform.Messaging.Tests`
+   - `Messaging.Tests`
    - cover retry loop, outbox loop, helper behavior
 
 ## Migration checklist cho flow moi
 
 Khi chuyen mot flow sync sang Kafka, di theo thu tu nay:
 
-1. chot event contract trong `Platform.Contracts`
+1. chot event contract trong `Contracts`
 2. tao producer-side notification/outbox writer
 3. tao outbox dispatcher hoac map vao base dispatcher
 4. tao consumer service
@@ -232,13 +232,13 @@ Checklist nay dung khi mo them 1 flow Kafka moi theo pattern hien tai.
 
 ### Producer
 
-1. them event contract trong `Platform.Contracts`
+1. them event contract trong `Contracts`
 2. them outbox writer / notification handler
 3. map event -> Kafka topic trong dispatcher
 4. them options class cho topic + DLT + retry
 5. them `appsettings.Development.json`
-6. them env vao `Platform.IaC/.env.example`
-7. them env mapping vao `Platform.IaC/docker-compose.yml`
+6. them env vao `IaC/.env.example`
+7. them env mapping vao `IaC/docker-compose.yml`
 8. them migration neu producer can them outbox state moi
 
 ### Consumer
@@ -261,8 +261,8 @@ Checklist nay dung khi mo them 1 flow Kafka moi theo pattern hien tai.
 6. them migration
 7. register options + hosted service trong DI
 8. them `appsettings.Development.json`
-9. them env vao `Platform.IaC/.env.example`
-10. them env mapping vao `Platform.IaC/docker-compose.yml`
+9. them env vao `IaC/.env.example`
+10. them env mapping vao `IaC/docker-compose.yml`
 
 ### Verify
 
@@ -280,24 +280,24 @@ Retry xu ly loi tam thoi. Reconciliation xu ly phan sai lech trang thai con sot 
 
 Trang thai hien tai trong repo:
 
-- `Platform.Ordering.API` da co payment reconciliation job de doi soat `Payments/Orders` pending voi `Platform.Payment.API`
-- `Platform.Wallet.API` da co topup reconciliation job de doi soat topup pending voi `Platform.Payment.API`
-- `Platform.Identity.API -> Platform.Wallet.API` hien tai van dua chinh vao outbox + retry + DLT, chua co source-of-truth reconciliation rieng
+- `Ordering.API` da co payment reconciliation job de doi soat `Payments/Orders` pending voi `Payment.API`
+- `Wallet.API` da co topup reconciliation job de doi soat topup pending voi `Payment.API`
+- `Identity.API -> Wallet.API` hien tai van dua chinh vao outbox + retry + DLT, chua co source-of-truth reconciliation rieng
 
 ## Current reference files
 
 Neu can copy dung pattern hien tai, doc truoc:
 
-- `Platform.Identity.API/Application/Features/Users/Commands/SyncUserSession/SyncUserSessionHandler.cs`
-- `Platform.Identity.API/Application/Features/Users/Notifications/IdentityUserSyncedOutboxNotificationHandler.cs`
-- `Platform.Identity.API/Infrastructure/Outbox/OutboxDispatcher.cs`
-- `Platform.Wallet.API/Consumers/Kafka/IdentityUserSyncedConsumerService.cs`
-- `Platform.Wallet.API/Application/Features/Wallets/Commands/ProcessIdentityUserSyncedMessage/ProcessIdentityUserSyncedMessageHandler.cs`
-- `Platform.Messaging/Hosting/KafkaConsumerWithRetryBase.cs`
-- `Platform.Messaging/Hosting/KafkaOutboxDispatcherBase.cs`
+- `Identity.API/Application/Features/Users/Commands/SyncUserSession/SyncUserSessionHandler.cs`
+- `Identity.API/Application/Features/Users/Notifications/IdentityUserSyncedOutboxNotificationHandler.cs`
+- `Identity.API/Infrastructure/Outbox/OutboxDispatcher.cs`
+- `Wallet.API/Consumers/Kafka/IdentityUserSyncedConsumerService.cs`
+- `Wallet.API/Application/Features/Wallets/Commands/ProcessIdentityUserSyncedMessage/ProcessIdentityUserSyncedMessageHandler.cs`
+- `Messaging/Hosting/KafkaConsumerWithRetryBase.cs`
+- `Messaging/Hosting/KafkaOutboxDispatcherBase.cs`
 
 ## Related docs
 
-- `Platform.Docs/Identity/KAFKA_MESSAGING_RUNBOOK.md`
-- `Platform.Docs/WALLET_BACKEND_FLOW.md`
-- `Platform.Docs/BACKEND_SERVICE_STRUCTURE.md`
+- `Docs/Identity/KAFKA_MESSAGING_RUNBOOK.md`
+- `Docs/WALLET_BACKEND_FLOW.md`
+- `Docs/BACKEND_SERVICE_STRUCTURE.md`

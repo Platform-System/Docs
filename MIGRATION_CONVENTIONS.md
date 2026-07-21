@@ -4,12 +4,12 @@ Tai lieu nay chot convention cho `DbContext`, `DbContextFactory` va `EF Core Mig
 
 Pham vi ap dung:
 
-- `Platform.Catalog.API`
-- `Platform.Identity.API`
-- `Platform.Ordering.API`
-- `Platform.Payment.API`
-- `Platform.Store.API`
-- `Platform.Wallet.API`
+- `Catalog.API`
+- `Identity.API`
+- `Ordering.API`
+- `Payment.API`
+- `Store.API`
+- `Wallet.API`
 
 ## 1. Muc tieu
 
@@ -50,11 +50,11 @@ Y nghia:
 
 ## 3. Namespace convention
 
-- `DbContext`: `Platform.<Service>.API.Infrastructure.Data`
-- `DbContextFactory`: `Platform.<Service>.API.Infrastructure.Data`
-- `Migrations`: `Platform.<Service>.API.Infrastructure.Data.Migrations`
-- `Models`: `Platform.<Service>.API.Infrastructure.Persistence.Models`
-- `Configurations`: `Platform.<Service>.API.Infrastructure.Persistence.Configurations`
+- `DbContext`: `<Service>.API.Infrastructure.Data`
+- `DbContextFactory`: `<Service>.API.Infrastructure.Data`
+- `Migrations`: `<Service>.API.Infrastructure.Data.Migrations`
+- `Models`: `<Service>.API.Infrastructure.Persistence.Models`
+- `Configurations`: `<Service>.API.Infrastructure.Persistence.Configurations`
 
 Khong tron:
 
@@ -142,8 +142,8 @@ Vi du voi `Ordering`:
 
 ```powershell
 dotnet ef migrations add InitialCreate `
-  --project Platform.Ordering.API/Platform.Ordering.API.csproj `
-  --startup-project Platform.Ordering.API/Platform.Ordering.API.csproj `
+  --project Ordering.API/Ordering.API.csproj `
+  --startup-project Ordering.API/Ordering.API.csproj `
   --output-dir Infrastructure/Data/Migrations
 ```
 
@@ -151,8 +151,8 @@ Update database:
 
 ```powershell
 dotnet ef database update `
-  --project Platform.Ordering.API/Platform.Ordering.API.csproj `
-  --startup-project Platform.Ordering.API/Platform.Ordering.API.csproj
+  --project Ordering.API/Ordering.API.csproj `
+  --startup-project Ordering.API/Ordering.API.csproj
 ```
 
 Neu dang tao migration cho service khac, giu nguyen pattern:
@@ -192,7 +192,7 @@ Neu dang tao migration cho service khac, giu nguyen pattern:
 
 ## 12. Huong xu ly cho Ordering
 
-`Platform.Ordering.API` hien co:
+`Ordering.API` hien co:
 
 - `OrderingDbContext`
 - `Persistence/Models`

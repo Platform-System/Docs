@@ -7,7 +7,7 @@ Tai lieu nay la ban backup trong repo cho local Codex skill:
 Muc dich:
 
 - tranh mat skill khi hong may hoac mat thu muc local `.codex`
-- giu mot `source of truth` nam trong `Platform.Docs`
+- giu mot `source of truth` nam trong `Docs`
 - de sau nay co the copy lai vao local skill folder ma khong can viet lai
 
 ## Local skill path
@@ -33,25 +33,25 @@ Co 2 cach:
 Tu workspace root:
 
 ```powershell
-./Platform.Workspace/scripts/restore-microservice-arch-skill.ps1
+./Workspace/scripts/restore-microservice-arch-skill.ps1
 ```
 
 Neu can restore cho user khac:
 
 ```powershell
-./Platform.Workspace/scripts/restore-microservice-arch-skill.ps1 -TargetUser "<your-user>"
+./Workspace/scripts/restore-microservice-arch-skill.ps1 -TargetUser "<your-user>"
 ```
 
 Neu local skill da ton tai va muon ghi de:
 
 ```powershell
-./Platform.Workspace/scripts/restore-microservice-arch-skill.ps1 -Force
+./Workspace/scripts/restore-microservice-arch-skill.ps1 -Force
 ```
 
 ### Cach 2. Copy tay
 
 1. clone hoac mo lai workspace/repo
-2. mo file backup nay trong `Platform.Docs`
+2. mo file backup nay trong `Docs`
 3. copy toan bo noi dung skill ben duoi
 4. ghi de vao local file:
    - `C:\Users\<your-user>\.codex\skills\microservice-project-arch\SKILL.md`
@@ -63,7 +63,7 @@ Script restore phia tren se doc dung khoi code ` ```md ` trong file nay va ghi r
 ```md
 ---
 name: microservice-project-arch
-description: Áp dụng rule kiến trúc cho repo MicroServiceProject .NET backend. Use when editing Platform.Catalog.API, Platform.Ordering.API, Platform.Store.API, Platform.Identity.API, Platform.Payment.API, Platform.Wallet.API, Platform.BuildingBlocks, Platform.SystemContext, hoặc service liên quan để giữ đúng query -> model -> response, command -> domain -> response, service boundary, mapper/handler/folder structure, integration abstraction, và EF migration conventions.
+description: Áp dụng rule kiến trúc cho repo MicroServiceProject .NET backend. Use when editing Catalog.API, Ordering.API, Store.API, Identity.API, Payment.API, Wallet.API, BuildingBlocks, SystemContext, hoặc service liên quan để giữ đúng query -> model -> response, command -> domain -> response, service boundary, mapper/handler/folder structure, integration abstraction, và EF migration conventions.
 ---
 
 # Microservice Project Arch
@@ -237,11 +237,11 @@ Mỗi service có database riêng sẽ theo cấu trúc:
 
 Namespace mong muốn:
 
-- `DbContext`: `Platform.<Service>.API.Infrastructure.Data`
-- `DbContextFactory`: `Platform.<Service>.API.Infrastructure.Data`
-- `Migrations`: `Platform.<Service>.API.Infrastructure.Data.Migrations`
-- `Models`: `Platform.<Service>.API.Infrastructure.Persistence.Models`
-- `Configurations`: `Platform.<Service>.API.Infrastructure.Persistence.Configurations`
+- `DbContext`: `<Service>.API.Infrastructure.Data`
+- `DbContextFactory`: `<Service>.API.Infrastructure.Data`
+- `Migrations`: `<Service>.API.Infrastructure.Data.Migrations`
+- `Models`: `<Service>.API.Infrastructure.Persistence.Models`
+- `Configurations`: `<Service>.API.Infrastructure.Persistence.Configurations`
 
 Không trộn:
 
@@ -314,8 +314,8 @@ Khi review một PR backend service, check nhanh:
 
 Nếu cần tạo hoặc apply migration trong workspace hiện tại, ưu tiên dùng script chung:
 
-- `Platform.Workspace/scripts/add-ef-migration.ps1`
-- `Platform.Workspace/scripts/update-ef-database.ps1`
+- `Workspace/scripts/add-ef-migration.ps1`
+- `Workspace/scripts/update-ef-database.ps1`
 
 Lý do:
 
@@ -335,7 +335,7 @@ Không thay thế nội dung skill ở trên.
 ### Sơ đồ nhớ nhanh
 
 ```text
-Platform.<Service>.API
+<Service>.API
 ├─ Application      -> Use case
 ├─ Domain           -> Business core
 ├─ Infrastructure   -> DB + external systems
@@ -347,7 +347,7 @@ Platform.<Service>.API
 ### Cây thư mục chuẩn
 
 ```text
-Platform.<Service>.API
+<Service>.API
 ├─ Application
 │  ├─ Abstractions
 │  │  ├─ Integrations
@@ -391,8 +391,8 @@ Platform.<Service>.API
 ├─ Program.cs
 ├─ appsettings.json
 ├─ appsettings.Development.json
-├─ Platform.<Service>.API.csproj
-└─ Platform.<Service>.API.Tests
+├─ <Service>.API.csproj
+└─ <Service>.API.Tests
    ├─ Application
    ├─ Infrastructure
    ├─ Presentation

@@ -4,15 +4,15 @@ Tai lieu nay chot contract backend cho luong vi hien tai.
 
 ## Service ownership
 
-- `Platform.Wallet.API`
+- `Wallet.API`
   - source-of-truth cho `Wallet` va `WalletTransaction`
   - giu `balance`
   - giu lich su `topup`, `payment`
-- `Platform.Payment.API`
+- `Payment.API`
   - chi lo tao payment link va xu ly webhook payment ngoai
-- `Platform.Ordering.API`
+- `Ordering.API`
   - lo tao order va chon cach thanh toan cho order
-- `Platform.Identity.API`
+- `Identity.API`
   - sau `sync session` se dam bao user co vi
 
 ## Business rules da chot
@@ -31,8 +31,8 @@ Tai lieu nay chot contract backend cho luong vi hien tai.
 
 Gateway route:
 
-- `/api/wallet/*` -> `Platform.Wallet.API`
-- `/api/ordering/*` -> `Platform.Ordering.API`
+- `/api/wallet/*` -> `Wallet.API`
+- `/api/ordering/*` -> `Ordering.API`
 
 ### 1. Get current wallet
 
@@ -255,8 +255,8 @@ Ket qua:
 
 Neu can tim nhanh code chinh:
 
-- `Platform.Wallet.API/Presentation/Http/WalletsController.cs`
-- `Platform.Wallet.API/Application/Features/Wallets/Commands/CreateTopup/CreateWalletTopupHandler.cs`
-- `Platform.Wallet.API/Consumers/PaymentSucceededConsumer.cs`
-- `Platform.Ordering.API/Application/Features/Orders/Commands/Checkout/CheckoutOrderHandler.cs`
-- `Platform.Identity.API/Application/Features/Users/Commands/SyncUserSession/SyncUserSessionHandler.cs`
+- `Wallet.API/Presentation/Http/WalletsController.cs`
+- `Wallet.API/Application/Features/Wallets/Commands/CreateTopup/CreateWalletTopupHandler.cs`
+- `Wallet.API/Consumers/PaymentSucceededConsumer.cs`
+- `Ordering.API/Application/Features/Orders/Commands/Checkout/CheckoutOrderHandler.cs`
+- `Identity.API/Application/Features/Users/Commands/SyncUserSession/SyncUserSessionHandler.cs`

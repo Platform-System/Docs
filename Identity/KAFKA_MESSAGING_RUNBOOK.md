@@ -4,8 +4,8 @@
 
 This runbook covers the current `Identity -> Kafka -> Wallet` flow:
 
-- producer-side outbox in `Platform.Identity.API`
-- consumer-side inbox in `Platform.Wallet.API`
+- producer-side outbox in `Identity.API`
+- consumer-side inbox in `Wallet.API`
 - topics:
   - `identity.user-provisioned`
   - `identity.user-provisioned.retry`
@@ -76,9 +76,9 @@ Before replaying or cleaning anything:
 
 ```bash
 docker compose ps
-docker logs platform-identity-api --tail 200
-docker logs platform-wallet-api --tail 200
-docker logs platform-kafka --tail 200
+docker logs identity-api --tail 200
+docker logs wallet-api --tail 200
+docker logs kafka --tail 200
 ```
 
 ### Check outbox backlog
@@ -189,12 +189,12 @@ Use one of these approaches:
 
 Current component-style E2E coverage in the repo:
 
-- `Platform.Identity.API.Tests/Infrastructure/Outbox/OutboxFlowTests.cs`
+- `Identity.API.Tests/Infrastructure/Outbox/OutboxFlowTests.cs`
   - outbox row creation
   - successful dispatch
   - retry scheduling
   - DLT publish after max retry
-- `Platform.Wallet.API.Tests/Application/Features/Wallets/Commands/ProcessIdentityUserSyncedMessage/ProcessIdentityUserSyncedMessageFlowTests.cs`
+- `Wallet.API.Tests/Application/Features/Wallets/Commands/ProcessIdentityUserSyncedMessage/ProcessIdentityUserSyncedMessageFlowTests.cs`
   - duplicate message dedupe
   - one wallet for repeated delivery
   - inbox entries tracked per consumer group
